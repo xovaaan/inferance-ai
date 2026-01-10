@@ -5,10 +5,10 @@ const hf = new HfInference(process.env.HUGGINGFACE_API_KEY)
 // Text-to-Image using Stable Diffusion XL (more reliable than Flux)
 export async function generateImage(prompt: string): Promise<string> {
     try {
-        const blob = await hf.textToImage({
+        const blob = (await hf.textToImage({
             model: 'stabilityai/stable-diffusion-xl-base-1.0',
             inputs: prompt,
-        })
+        })) as any
 
         // Convert blob to base64 URL for immediate use
         const buffer = Buffer.from(await blob.arrayBuffer())
