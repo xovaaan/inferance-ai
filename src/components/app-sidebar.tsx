@@ -49,6 +49,16 @@ const items = [
         icon: Mic,
     },
     {
+        title: "Voice Changer",
+        url: "/dashboard/voice-changer",
+        icon: Mic, // Using Mic as placeholder, could perform better icon search later if needed
+    },
+    {
+        title: "Voice Clone",
+        url: "/dashboard/voice-clone",
+        icon: User,
+    },
+    {
         title: "History",
         url: "/dashboard/history",
         icon: History,

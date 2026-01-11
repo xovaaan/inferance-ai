@@ -355,11 +355,13 @@ export default function LandingPage() {
               <p className="text-white/50 text-lg">Three powerful tools, one platform</p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
               {[
                 { icon: Wand2, title: "Text to Image", desc: "Create photorealistic images from simple descriptions using Google Imagen", color: "blue", features: ["HD quality outputs", "Multiple styles", "Instant generation"], image: "https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=800&auto=format&fit=crop&q=80" },
                 { icon: Video, title: "Text to Video", desc: "Generate cinematic videos from text prompts with advanced AI models", color: "purple", features: ["5-second clips", "Cinematic quality", "Motion control"], image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&auto=format&fit=crop&q=80" },
-                { icon: Mic, title: "Text to Speech", desc: "Convert text to natural-sounding speech with Neural2 voices", color: "green", features: ["Human-like voices", "Multiple languages", "Studio quality"], image: "https://images.unsplash.com/photo-1589903308904-1010c2294adc?w=800&auto=format&fit=crop&q=80" }
+                { icon: Mic, title: "Text to Speech", desc: "Convert text to natural-sounding speech with ElevenLabs voices", color: "green", features: ["Human-like voices", "Multiple languages", "Studio quality"], image: "https://images.unsplash.com/photo-1589903308904-1010c2294adc?w=800&auto=format&fit=crop&q=80" },
+                { icon: Sparkles, title: "Voice Changer", desc: "Transform any audio into a different voice while preserving emotion", color: "yellow", features: ["Speech-to-Speech", "Emotion preservation", "Audio upload"], image: "https://images.unsplash.com/photo-1516280440614-6697288d5d38?w=800&auto=format&fit=crop&q=80" },
+                { icon: Users, title: "Voice Cloning", desc: "Create a digital replica of your voice from audio samples", color: "pink", features: ["Instant cloning", "Custom voice ID", "Secure & Private"], image: "https://images.unsplash.com/photo-1557296387-5358ad7997bb?w=800&auto=format&fit=crop&q=80" }
               ].map((service, idx) => (
                 <motion.div
                   key={service.title}

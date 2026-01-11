@@ -1,5 +1,8 @@
 "use client"
 
+import { GradientLoader } from "@/components/gradient-loader"
+import { useMinimumLoading } from "@/hooks/use-minimum-loading"
+
 import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -28,7 +31,7 @@ const formSchema = z.object({
 })
 
 export default function ImagePage() {
-    const [loading, setLoading] = useState(false)
+    const { isLoading, startLoading, stopLoading } = useMinimumLoading()
     const [output, setOutput] = useState<string | null>(null)
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -39,7 +42,8 @@ export default function ImagePage() {
     })
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        setLoading(true)
+        startLoading()
+        setOutput(null)
         try {
             const result = await generateImageAction(values.prompt)
 
@@ -52,7 +56,7 @@ export default function ImagePage() {
         } catch (error) {
             toast.error("An unexpected error occurred.")
         } finally {
-            setLoading(false)
+            stopLoading()
         }
     }
 
@@ -86,7 +90,7 @@ export default function ImagePage() {
                                                 <Input
                                                     placeholder="A futuristic city with flying cars and neon lights..."
                                                     {...field}
-                                                    disabled={loading}
+                                                    disabled={isLoading}
                                                 />
                                             </FormControl>
                                             <FormDescription>
@@ -96,8 +100,8 @@ export default function ImagePage() {
                                         </FormItem>
                                     )}
                                 />
-                                <Button type="submit" className="w-full" disabled={loading}>
-                                    {loading ? (
+                                <Button type="submit" className="w-full" disabled={isLoading}>
+                                    {isLoading ? (
                                         <>
                                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                             Generating...
@@ -115,7 +119,9 @@ export default function ImagePage() {
                 </Card>
 
                 <Card className="flex flex-col items-center justify-center min-h-[400px] bg-slate-950 text-white overflow-hidden relative border-none">
-                    {output ? (
+                    {isLoading ? (
+                        <GradientLoader />
+                    ) : output ? (
                         <div className="relative w-full h-full group">
                             <img
                                 src={output}
